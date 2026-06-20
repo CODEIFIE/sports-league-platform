@@ -18,6 +18,10 @@ export function createApp() {
   // static uploads
   app.use('/uploads', express.static(path.resolve(process.cwd(), env.uploadDir)));
 
+  // root route — keeps platform health probes (e.g. Hugging Face) happy
+  app.get('/', (_req, res) =>
+    res.json({ name: 'SportsLeague API', status: 'ok', docs: '/api/health' }));
+
   app.use('/api', apiLimiter, routes);
 
   app.use(notFound);

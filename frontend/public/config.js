@@ -4,4 +4,4 @@
 // Example: apiUrl: "https://sportsleague-api.onrender.com"
 // Leave "" if the API is served from the same domain as this site.
 // ----------------------------------------------------------------------------
-window.__APP_CONFIG__ = { apiUrl: "" };
+window.__APP_CONFIG__ = { apiUrl: "https://afnan124-sportsleague-api.hf.space" };
