@@ -2,12 +2,9 @@ name: Deploy frontend to Hostinger
 
 # Builds the React app and uploads dist/ to Hostinger public_html over FTP.
 # Runs on every change to the frontend (and can be triggered manually).
+# Disabled auto-run: Hostinger FTP is unreachable for this account.
+# Kept for manual use if FTP is ever enabled. Run via the Actions tab if needed.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'frontend/**'
-      - '.github/workflows/deploy-frontend.yml'
   workflow_dispatch:
 
 jobs:
