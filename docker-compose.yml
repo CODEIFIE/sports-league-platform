@@ -1,0 +1,50 @@
+# Full local stack: MySQL + backend API. Frontend runs via `npm run dev` (Vite).
+services:
+  db:
+    image: mysql:8.0
+    container_name: sl_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpw
+      MYSQL_DATABASE: sportsleague
+      MYSQL_USER: sl_app
+      MYSQL_PASSWORD: sl_app_pw_2026
+    ports:
+      - '3307:3306'   # host 3307 to avoid clashing with a local MySQL on 3306
+    volumes:
+      - sl_db_data:/var/lib/mysql
+      # auto-load schema on first boot (alphabetical order)
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./database/views.sql:/docker-entrypoint-initdb.d/02-views.sql:ro
+      - ./database/procedures.sql:/docker-entrypoint-initdb.d/03-procedures.sql:ro
+      - ./database/triggers.sql:/docker-entrypoint-initdb.d/04-triggers.sql:ro
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/05-seed.sql:ro
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-prootpw']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build: ./backend
+    container_name: sl_api
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT: 4000
+      NODE_ENV: production
+      CLIENT_ORIGIN: http://localhost:5173
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: sl_app
+      DB_PASSWORD: sl_app_pw_2026
+      DB_NAME: sportsleague
+      JWT_ACCESS_SECRET: change_me_access
+      JWT_REFRESH_SECRET: change_me_refresh
+    ports:
+      - '4000:4000'
+
+volumes:
+  sl_db_data:

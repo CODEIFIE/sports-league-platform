@@ -1,0 +1,130 @@
+### Sports League API — REST Client collection
+### Use with the VS Code "REST Client" extension. Run requests top to bottom.
+@base = http://localhost:4000/api
+
+# ---------------------------------------------------------------------------
+# AUTH
+# ---------------------------------------------------------------------------
+### Login (default admin from seed)
+# @name login
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{ "email": "admin@sportsleague.dev", "password": "Admin@123" }
+
+### Capture the token from the login response
+@token = {{login.response.body.data.accessToken}}
+@refresh = {{login.response.body.data.refreshToken}}
+
+### Current user
+GET {{base}}/auth/me
+Authorization: Bearer {{token}}
+
+### Register a new tournament admin
+POST {{base}}/auth/register
+Content-Type: application/json
+
+{ "fullName": "New Organizer", "email": "neworg@example.com", "password": "secret123", "role": "TOURNAMENT_ADMIN" }
+
+### Refresh access token
+POST {{base}}/auth/refresh
+Content-Type: application/json
+
+{ "refreshToken": "{{refresh}}" }
+
+# ---------------------------------------------------------------------------
+# TOURNAMENTS
+# ---------------------------------------------------------------------------
+### List sports
+GET {{base}}/tournaments/sports
+
+### Create tournament
+# @name createTournament
+POST {{base}}/tournaments
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "name": "Test Cup 2026", "sportId": 1, "format": "ROUND_ROBIN", "status": "ONGOING", "location": "Test Arena" }
+
+@tid = {{createTournament.response.body.data.id}}
+
+### List tournaments (search + filter + pagination)
+GET {{base}}/tournaments?page=1&limit=10&status=ONGOING
+
+### Get one
+GET {{base}}/tournaments/{{tid}}
+
+# ---------------------------------------------------------------------------
+# TEAMS & PLAYERS
+# ---------------------------------------------------------------------------
+### Create team
+# @name createTeam
+POST {{base}}/teams
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "tournamentId": {{tid}}, "name": "Test FC", "coach": "Coach A", "captain": "Cap A" }
+
+@teamId = {{createTeam.response.body.data.id}}
+
+### Create player
+POST {{base}}/players
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "teamId": {{teamId}}, "name": "Striker One", "jerseyNumber": 9, "position": "Forward", "age": 22 }
+
+### List players (filter by team)
+GET {{base}}/players?teamId={{teamId}}
+
+# ---------------------------------------------------------------------------
+# FIXTURES & LIVE SCORING
+# ---------------------------------------------------------------------------
+### Generate round-robin fixtures (needs >= 2 teams)
+POST {{base}}/matches/generate
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "tournamentId": {{tid}}, "format": "ROUND_ROBIN" }
+
+### List matches for tournament
+GET {{base}}/matches?tournamentId={{tid}}
+
+### Start a match (replace :id)
+PATCH {{base}}/matches/1/status
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "status": "LIVE" }
+
+### Add a goal event (trigger updates score + stats)
+POST {{base}}/matches/1/events
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "teamId": 1, "playerId": 1, "eventType": "GOAL", "value": 1, "minute": 23 }
+
+### Complete a match (trigger updates standings)
+PATCH {{base}}/matches/1/status
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "status": "COMPLETED" }
+
+# ---------------------------------------------------------------------------
+# STATS, SEARCH, REPORTS
+# ---------------------------------------------------------------------------
+### Dashboard aggregates
+GET {{base}}/stats/dashboard
+
+### Standings
+GET {{base}}/stats/standings/{{tid}}
+
+### Top scorers
+GET {{base}}/stats/top-players/{{tid}}?metric=goals&limit=10
+
+### Global search
+GET {{base}}/search?q=test
+
+### Download standings PDF (open URL in browser)
+GET {{base}}/reports/standings/{{tid}}

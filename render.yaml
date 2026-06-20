@@ -1,0 +1,33 @@
+# Render Blueprint — deploys the backend API (and optional managed MySQL).
+# Note: Render's native DB is PostgreSQL; for MySQL use an external provider
+# (PlanetScale, Railway, Aiven) and set the DB_* env vars below.
+services:
+  - type: web
+    name: sportsleague-api
+    runtime: node
+    rootDir: backend
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: node dist/src/server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: CLIENT_ORIGIN
+        sync: false   # set to your Vercel URL
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: 3306
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: sportsleague
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
