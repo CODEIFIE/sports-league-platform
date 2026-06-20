@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { FileText, Download, Trophy, ListChecks, BarChart3, Award, ClipboardList } from 'lucide-react';
-import { api } from '@/services/api';
+import { api, API_BASE } from '@/services/api';
 import { PageHeader, EmptyState } from '@/components/shared';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -37,7 +37,7 @@ export default function Reports() {
   });
 
   const open = (key: string, extra = '') =>
-    window.open(`/api/reports/${key}/${tournamentId}${extra}`, '_blank');
+    window.open(`${API_BASE}/api/reports/${key}/${tournamentId}${extra}`, '_blank');
 
   const champion = standings?.[0];
 
