@@ -11,6 +11,9 @@ export const env = {
   port: Number(process.env.PORT ?? 4000),
   nodeEnv: process.env.NODE_ENV ?? 'development',
   clientOrigin: process.env.CLIENT_ORIGIN ?? 'http://localhost:5173',
+  // comma-separated list of allowed origins (CORS + sockets)
+  clientOrigins: (process.env.CLIENT_ORIGIN ?? 'http://localhost:5173')
+    .split(',').map((s) => s.trim()).filter(Boolean),
   db: {
     host: required('DB_HOST', 'localhost'),
     port: Number(process.env.DB_PORT ?? 3306),

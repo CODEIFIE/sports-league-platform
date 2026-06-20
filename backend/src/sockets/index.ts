@@ -7,7 +7,7 @@ let io: IOServer | null = null;
 /** Initialise Socket.io and wire room join/leave for per-match live updates. */
 export function initSockets(httpServer: HttpServer): IOServer {
   io = new IOServer(httpServer, {
-    cors: { origin: env.clientOrigin, credentials: true },
+    cors: { origin: env.clientOrigins, credentials: true },
   });
 
   io.on('connection', (socket: Socket) => {
