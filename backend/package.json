@@ -12,6 +12,7 @@
     "db:setup": "tsx scripts/setup-db.ts",
     "db:seed": "tsx scripts/seed.ts",
     "db:seed:real": "tsx scripts/seed-real.ts",
+    "db:seed:ucp": "tsx scripts/seed-ucp.ts",
     "test:db": "tsx scripts/smoke-test.ts"
   },
   "dependencies": {

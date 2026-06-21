@@ -4,55 +4,58 @@
 
 @layer base {
   :root {
-    /* ---- GREEN THEME (light) ---- */
-    --background: 150 40% 98%;
-    --foreground: 155 45% 9%;
+    /* ---- UCP THEME (light) — crimson + navy + gold ---- */
+    --background: 0 0% 99%;
+    --foreground: 222 40% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 155 45% 9%;
-    --primary: 152 62% 36%;
+    --card-foreground: 222 40% 12%;
+    --primary: 345 72% 37%;            /* UCP crimson */
     --primary-foreground: 0 0% 100%;
-    --secondary: 150 25% 94%;
-    --secondary-foreground: 155 40% 12%;
-    --muted: 150 22% 95%;
-    --muted-foreground: 155 12% 40%;
-    --accent: 152 50% 90%;
-    --accent-foreground: 152 60% 26%;
-    --destructive: 0 72% 51%;
+    --secondary: 345 25% 95%;
+    --secondary-foreground: 345 40% 22%;
+    --muted: 220 16% 95%;
+    --muted-foreground: 222 12% 42%;
+    --accent: 345 40% 94%;
+    --accent-foreground: 345 60% 32%;
+    --gold: 42 92% 50%;                /* academic gold accent */
+    --navy: 222 47% 16%;
+    --destructive: 0 72% 48%;
     --destructive-foreground: 0 0% 100%;
-    --success: 142 71% 42%;
+    --success: 142 64% 40%;
     --success-foreground: 0 0% 100%;
-    --border: 150 20% 88%;
-    --input: 150 20% 88%;
-    --ring: 152 62% 40%;
-    --radius: 1rem;
-    /* glass + glow */
+    --border: 345 12% 88%;
+    --input: 345 12% 88%;
+    --ring: 345 72% 42%;
+    --radius: 0.7rem;
     --glass: 255 255 255;
-    --glow: 16 185 129;
+    --glow: 190 30 60;                 /* crimson glow */
   }
 
   .dark {
-    /* ---- GREEN THEME (dark) ---- */
-    --background: 160 35% 5%;
-    --foreground: 150 30% 96%;
-    --card: 158 30% 8%;
-    --card-foreground: 150 30% 96%;
-    --primary: 150 72% 45%;
-    --primary-foreground: 160 40% 6%;
-    --secondary: 158 25% 14%;
-    --secondary-foreground: 150 30% 96%;
-    --muted: 158 22% 13%;
-    --muted-foreground: 150 14% 62%;
-    --accent: 156 40% 18%;
-    --accent-foreground: 150 60% 80%;
-    --destructive: 0 63% 50%;
+    /* ---- UCP THEME (dark) — navy charcoal surfaces ---- */
+    --background: 222 45% 6%;
+    --foreground: 210 30% 96%;
+    --card: 222 38% 9%;
+    --card-foreground: 210 30% 96%;
+    --primary: 345 78% 53%;            /* brighter crimson on dark */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 28% 15%;
+    --secondary-foreground: 210 30% 96%;
+    --muted: 222 24% 14%;
+    --muted-foreground: 215 18% 64%;
+    --accent: 222 30% 18%;
+    --accent-foreground: 345 70% 78%;
+    --gold: 42 92% 56%;
+    --navy: 222 47% 14%;
+    --destructive: 0 70% 52%;
     --destructive-foreground: 0 0% 100%;
-    --success: 150 64% 46%;
-    --success-foreground: 160 40% 6%;
-    --border: 156 25% 16%;
-    --input: 156 25% 18%;
-    --ring: 150 72% 50%;
-    --glass: 18 32 26;
-    --glow: 16 220 140;
+    --success: 142 60% 46%;
+    --success-foreground: 0 0% 100%;
+    --border: 222 26% 18%;
+    --input: 222 26% 20%;
+    --ring: 345 78% 56%;
+    --glass: 18 22 34;                 /* navy-tinted glass */
+    --glow: 210 40 80;
   }
 
   * { @apply border-border; }
@@ -64,26 +67,25 @@
 }
 
 @layer components {
-  /* ---- LIQUID GLASS ---- */
   .glass {
-    background: rgba(var(--glass), 0.55);
+    background: rgba(var(--glass), 0.6);
     @apply backdrop-blur-2xl border border-white/15 shadow-[0_8px_32px_rgba(0,0,0,0.12)];
   }
   .dark .glass {
-    background: rgba(var(--glass), 0.45);
-    @apply border-white/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.4)];
+    background: rgba(var(--glass), 0.5);
+    @apply border-white/[0.07] shadow-[0_8px_32px_rgba(0,0,0,0.45)];
   }
   .glass-strong {
-    background: rgba(var(--glass), 0.7);
+    background: rgba(var(--glass), 0.75);
     @apply backdrop-blur-3xl border border-white/20;
   }
-  .dark .glass-strong { background: rgba(var(--glass), 0.6); }
+  .dark .glass-strong { background: rgba(var(--glass), 0.65); }
 
-  /* glowing green gradient text */
+  /* crimson → gold gradient text (UCP) */
   .text-gradient {
-    @apply bg-gradient-to-r from-emerald-500 via-green-400 to-teal-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[hsl(345_72%_45%)] via-[hsl(350_70%_50%)] to-[hsl(42_92%_50%)] bg-clip-text text-transparent;
   }
-  /* animated gradient border ring */
+  .text-gold { color: hsl(var(--gold)); }
   .ring-glow {
     box-shadow: 0 0 0 1px rgba(var(--glow), 0.25), 0 0 32px -4px rgba(var(--glow), 0.4);
   }
@@ -94,23 +96,17 @@
   .scrollbar-thin::-webkit-scrollbar-thumb { @apply bg-primary/30 rounded-full; }
   .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
 
-  /* liquid blob backdrop */
   .blob {
     @apply absolute rounded-full blur-3xl opacity-60 pointer-events-none;
     mix-blend-mode: screen;
   }
   .dark .blob { mix-blend-mode: lighten; }
 
-  /* shimmering sheen used on hover */
-  .sheen {
-    position: relative;
-    overflow: hidden;
-  }
+  .sheen { position: relative; overflow: hidden; }
   .sheen::after {
     content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+    position: absolute; inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.22) 50%, transparent 70%);
     transform: translateX(-100%);
     transition: transform 0.8s ease;
   }
@@ -132,8 +128,8 @@
   50% { background-position: 100% 50%; }
 }
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 24px -6px rgba(var(--glow), 0.35); }
-  50% { box-shadow: 0 0 44px 0px rgba(var(--glow), 0.6); }
+  0%, 100% { box-shadow: 0 0 24px -6px rgba(var(--glow), 0.4); }
+  50% { box-shadow: 0 0 44px 0px rgba(var(--glow), 0.65); }
 }
 @keyframes live-ping {
   0% { transform: scale(0.9); opacity: 1; }

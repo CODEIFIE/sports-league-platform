@@ -79,7 +79,7 @@ export default function Scoreboard() {
           <div className="glass flex h-14 items-center justify-between rounded-2xl px-4">
             <Link to="/" className="flex items-center gap-2 font-bold">
               <ArrowLeft className="h-4 w-4 text-muted-foreground" />
-              <span className="text-gradient">SportsLeague</span>
+              <span className="text-gradient">UCP Sports League</span>
             </Link>
             <div className="flex items-center gap-2">
               <Button variant="ghost" size="icon" onClick={toggle}>
@@ -114,7 +114,7 @@ export default function Scoreboard() {
               className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {live.map((m) => (
                 <motion.div key={m.id} variants={item} className="ring-glow rounded-2xl">
-                  <MatchCard match={m} />
+                  <MatchCard match={m} to={`/match/${m.id}`} />
                 </motion.div>
               ))}
             </motion.div>
@@ -127,7 +127,7 @@ export default function Scoreboard() {
             {upcoming.length ? (
               <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}
                 className="grid gap-4 sm:grid-cols-2">
-                {upcoming.map((m) => <motion.div key={m.id} variants={item}><MatchCard match={m} /></motion.div>)}
+                {upcoming.map((m) => <motion.div key={m.id} variants={item}><MatchCard match={m} to={`/match/${m.id}`} /></motion.div>)}
               </motion.div>
             ) : <p className="text-sm text-muted-foreground">No upcoming matches.</p>}
 
@@ -135,7 +135,7 @@ export default function Scoreboard() {
             {completed.length ? (
               <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}
                 className="grid gap-4 sm:grid-cols-2">
-                {completed.map((m) => <motion.div key={m.id} variants={item}><MatchCard match={m} /></motion.div>)}
+                {completed.map((m) => <motion.div key={m.id} variants={item}><MatchCard match={m} to={`/match/${m.id}`} /></motion.div>)}
               </motion.div>
             ) : <p className="text-sm text-muted-foreground">No completed matches yet.</p>}
           </section>
@@ -161,7 +161,7 @@ export default function Scoreboard() {
 
       <footer className="border-t border-white/10">
         <div className="container py-8 text-center text-sm text-muted-foreground">
-          © 2026 SportsLeague · Live Scoring Platform
+          © 2026 UCP Sports League · Live Scoring Platform
         </div>
       </footer>
     </div>

@@ -11,7 +11,7 @@ export function Layout() {
   return (
     <div className="relative flex h-screen overflow-hidden bg-background">
       {/* ambient green glow */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-mesh-green opacity-30" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-mesh-ucp opacity-30" />
       {/* desktop sidebar */}
       <div className="hidden lg:block"><Sidebar /></div>
 

@@ -9,7 +9,8 @@ ChartJS.register(
   PointElement, LineElement, Tooltip, Legend, Filler,
 );
 
-export const CHART_COLORS = ['#10b981', '#14b8a6', '#22c55e', '#06b6d4', '#34d399', '#0ea5a4', '#84cc16', '#2dd4bf'];
+// UCP palette: crimson, gold, navy + supporting tones
+export const CHART_COLORS = ['#b21e3f', '#e0a92e', '#23355c', '#d64d6a', '#7a8aa8', '#8c1530', '#f0c75e', '#3f5681'];
 
 export const baseOptions = {
   responsive: true,

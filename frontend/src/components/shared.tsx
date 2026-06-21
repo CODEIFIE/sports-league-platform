@@ -27,7 +27,7 @@ export function StatCard({
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ delay: index * 0.06, type: 'spring', stiffness: 220, damping: 22 }}
       whileHover={{ y: -5 }}
-      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-card/70 p-5 shadow-sm backdrop-blur-xl transition-shadow hover:shadow-[0_16px_44px_-16px_rgba(16,185,129,0.5)]"
+      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-card/70 p-5 shadow-sm backdrop-blur-xl transition-shadow hover:shadow-[0_16px_44px_-16px_rgba(190,30,60,0.5)]"
     >
       {/* glow orb */}
       <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary/20 blur-2xl transition-all duration-500 group-hover:bg-primary/35" />

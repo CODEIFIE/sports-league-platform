@@ -21,11 +21,11 @@ export default {
       },
       borderRadius: { lg: 'var(--radius)', md: 'calc(var(--radius) - 4px)', sm: 'calc(var(--radius) - 8px)' },
       backgroundImage: {
-        'mesh-green':
-          'radial-gradient(at 20% 20%, hsla(152,70%,45%,0.25) 0px, transparent 50%),' +
-          'radial-gradient(at 80% 10%, hsla(168,80%,50%,0.20) 0px, transparent 50%),' +
-          'radial-gradient(at 70% 80%, hsla(142,75%,40%,0.22) 0px, transparent 50%),' +
-          'radial-gradient(at 10% 75%, hsla(180,70%,45%,0.18) 0px, transparent 50%)',
+        'mesh-ucp':
+          'radial-gradient(at 20% 20%, hsla(345,72%,42%,0.28) 0px, transparent 50%),' +
+          'radial-gradient(at 80% 10%, hsla(42,92%,52%,0.16) 0px, transparent 50%),' +
+          'radial-gradient(at 70% 80%, hsla(345,70%,38%,0.24) 0px, transparent 50%),' +
+          'radial-gradient(at 10% 75%, hsla(222,47%,30%,0.22) 0px, transparent 50%)',
       },
       keyframes: {
         'accordion-down': { from: { height: '0' }, to: { height: 'var(--radix-accordion-content-height)' } },
@@ -44,8 +44,8 @@ export default {
           '50%': { backgroundPosition: '100% 50%' },
         },
         'glow-pulse': {
-          '0%,100%': { boxShadow: '0 0 24px -6px rgba(16,185,129,0.35)' },
-          '50%': { boxShadow: '0 0 44px 0px rgba(16,185,129,0.6)' },
+          '0%,100%': { boxShadow: '0 0 24px -6px rgba(190,30,60,0.4)' },
+          '50%': { boxShadow: '0 0 44px 0px rgba(190,30,60,0.65)' },
         },
         'fade-up': { from: { opacity: '0', transform: 'translateY(16px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
         shimmer: { '100%': { transform: 'translateX(100%)' } },

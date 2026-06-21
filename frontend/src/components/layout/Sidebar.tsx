@@ -19,9 +19,12 @@ const nav = [
 export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <aside className="flex h-full w-64 flex-col border-r border-white/10 bg-card/60 backdrop-blur-2xl">
-      <div className="flex h-16 items-center gap-2 border-b border-white/10 px-6">
-        <div className="grid h-8 w-8 place-items-center rounded-xl bg-primary text-primary-foreground font-bold shadow-[0_0_18px_-2px_rgba(16,185,129,0.7)]">S</div>
-        <span className="font-bold tracking-tight text-gradient">SportsLeague</span>
+      <div className="flex h-16 items-center gap-2 border-b border-white/10 px-5">
+        <div className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-primary-foreground text-xs font-extrabold shadow-[0_0_18px_-2px_rgba(190,30,60,0.7)]">UCP</div>
+        <div className="leading-tight">
+          <div className="text-sm font-bold tracking-tight">UCP Sports League</div>
+          <div className="text-[10px] text-muted-foreground">Gujranwala Campus</div>
+        </div>
       </div>
       <nav className="flex-1 space-y-1 p-3">
         {nav.map((item) => (
@@ -34,7 +37,7 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
               cn(
                 'group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200',
                 isActive
-                  ? 'bg-gradient-to-r from-primary to-emerald-500 text-primary-foreground shadow-[0_4px_20px_-4px_rgba(16,185,129,0.6)]'
+                  ? 'bg-gradient-to-r from-primary to-[hsl(345_75%_50%)] text-primary-foreground shadow-[0_4px_20px_-4px_rgba(190,30,60,0.6)]'
                   : 'text-muted-foreground hover:bg-primary/10 hover:text-foreground hover:translate-x-1',
               )
             }

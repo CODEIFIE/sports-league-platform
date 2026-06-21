@@ -42,8 +42,8 @@ export default function Login() {
       {/* Brand panel */}
       <div className="relative hidden flex-col justify-between p-12 lg:flex">
         <Link to="/" className="flex items-center gap-2 text-lg font-bold">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-primary-foreground shadow-[0_0_24px_-2px_rgba(16,185,129,0.7)]"><Trophy className="h-5 w-5" /></span>
-          <span className="text-gradient">SportsLeague</span>
+          <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-primary-foreground shadow-[0_0_24px_-2px_rgba(190,30,60,0.7)]"><Trophy className="h-5 w-5" /></span>
+          <span className="text-gradient">UCP Sports League</span>
         </Link>
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
           <h1 className="text-4xl font-extrabold leading-tight">Run tournaments<br /><span className="text-gradient">like a pro.</span></h1>
@@ -64,7 +64,7 @@ export default function Login() {
             ))}
           </div>
         </motion.div>
-        <p className="text-sm text-muted-foreground">© 2026 SportsLeague Platform</p>
+        <p className="text-sm text-muted-foreground">© 2026 UCP Sports League Platform</p>
       </div>
 
       {/* Form */}
@@ -72,7 +72,7 @@ export default function Login() {
         <motion.form initial={{ opacity: 0, y: 24, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }}
           onSubmit={handleSubmit(onSubmit)} className="glass-strong w-full max-w-sm space-y-5 rounded-3xl p-8 ring-glow">
           <div className="lg:hidden flex items-center gap-2 font-bold">
-            <Trophy className="h-6 w-6 text-primary" /> <span className="text-gradient">SportsLeague</span>
+            <Trophy className="h-6 w-6 text-primary" /> <span className="text-gradient">UCP Sports League</span>
           </div>
           <div>
             <h2 className="text-2xl font-bold">Sign in</h2>

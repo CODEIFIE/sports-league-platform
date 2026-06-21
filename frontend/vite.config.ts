@@ -2,9 +2,8 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'node:path';
 
-export default defineConfig(({ command }) => ({
-  // served under /sports-league-platform/ on GitHub Pages; root in dev
-  base: command === 'build' ? '/sports-league-platform/' : '/',
+export default defineConfig(() => ({
+  base: '/', // served from Hostinger public_html root
   plugins: [react()],
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') },

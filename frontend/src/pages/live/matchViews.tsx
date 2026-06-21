@@ -11,7 +11,7 @@ const econ = (r: number, b: number) => (b ? (r / (b / 6)).toFixed(2) : '0.00');
 function Ball({ v }: { v: string }) {
   const tone = v === 'W' ? 'bg-destructive text-destructive-foreground'
     : v === '4' ? 'bg-primary/20 text-primary'
-    : v === '6' ? 'bg-emerald-500 text-white'
+    : v === '6' ? 'bg-[hsl(42_92%_50%)] text-black'
     : v === '0' ? 'bg-muted text-muted-foreground' : 'bg-secondary';
   return <span className={`grid h-7 w-7 place-items-center rounded-full text-xs font-bold ${tone}`}>{v}</span>;
 }
@@ -194,7 +194,7 @@ function StatBar({ label, home, away, suffix = '' }: { label: string; home: numb
       <div className="mb-1 flex justify-between text-xs"><span>{home}{suffix}</span><span className="text-muted-foreground">{label}</span><span>{away}{suffix}</span></div>
       <div className="flex h-2 overflow-hidden rounded-full bg-muted">
         <div className="bg-primary" style={{ width: `${(home / total) * 100}%` }} />
-        <div className="bg-emerald-400/60" style={{ width: `${(away / total) * 100}%` }} />
+        <div className="bg-primary/50" style={{ width: `${(away / total) * 100}%` }} />
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import statsRoutes from './stats.routes.js';
 import notificationRoutes from './notification.routes.js';
 import reportRoutes from './report.routes.js';
 import searchRoutes from './search.routes.js';
-import simulationRoutes from './simulation.routes.js';
+import scoringRoutes from './scoring.routes.js';
 
 const router = Router();
 
@@ -22,6 +22,6 @@ router.use('/stats', statsRoutes);
 router.use('/notifications', notificationRoutes);
 router.use('/reports', reportRoutes);
 router.use('/search', searchRoutes);
-router.use('/sim', simulationRoutes);
+router.use('/scoring', scoringRoutes);
 
 export default router;

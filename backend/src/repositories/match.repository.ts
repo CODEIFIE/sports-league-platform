@@ -123,6 +123,16 @@ export const matchRepository = {
     await pool.query(`DELETE FROM events WHERE id = :eventId`, { eventId });
   },
 
+  /** Persist live scorecard state (JSON) without touching man-of-match. */
+  async saveStateJson(matchId: number, json: string): Promise<void> {
+    await pool.query(`UPDATE matches SET summary_json = :json WHERE id = :matchId`, { matchId, json });
+  },
+
+  async setScore(matchId: number, fields: Record<string, any>): Promise<void> {
+    const cols = Object.keys(fields).map((k) => `${k} = :${k}`).join(', ');
+    await pool.query(`UPDATE matches SET ${cols} WHERE id = :matchId`, { ...fields, matchId });
+  },
+
   /** Persist the full post-match report (JSON) + man of the match. */
   async saveSummary(matchId: number, summaryJson: string, momPlayerId: number | null): Promise<void> {
     await pool.query(

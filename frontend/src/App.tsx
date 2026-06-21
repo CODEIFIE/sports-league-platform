@@ -3,6 +3,7 @@ import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { Layout } from '@/components/layout/Layout';
 import Home from '@/pages/public/Home';
 import Scoreboard from '@/pages/public/Scoreboard';
+import MatchDetail from '@/pages/public/MatchDetail';
 import Login from '@/pages/auth/Login';
 import Register from '@/pages/auth/Register';
 import Dashboard from '@/pages/Dashboard';
@@ -23,6 +24,7 @@ export default function App() {
       {/* public */}
       <Route path="/" element={<Home />} />
       <Route path="/scoreboard" element={<Scoreboard />} />
+      <Route path="/match/:id" element={<MatchDetail />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 

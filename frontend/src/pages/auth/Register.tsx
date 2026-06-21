@@ -44,7 +44,7 @@ export default function Register() {
       <motion.form initial={{ opacity: 0, y: 24, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }}
         onSubmit={handleSubmit(onSubmit)} className="glass-strong w-full max-w-sm space-y-5 rounded-3xl p-8 ring-glow">
         <div className="flex items-center gap-2 text-lg font-bold">
-          <Trophy className="h-6 w-6 text-primary" /> <span className="text-gradient">SportsLeague</span>
+          <Trophy className="h-6 w-6 text-primary" /> <span className="text-gradient">UCP Sports League</span>
         </div>
         <div>
           <h2 className="text-2xl font-bold">Create account</h2>
